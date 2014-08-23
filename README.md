@@ -21,5 +21,6 @@ show
 - express
 - ejs
 - bootstrap
+- requirejs
 - grunt
 - 更多好东西期待你的引入
