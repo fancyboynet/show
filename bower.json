@@ -1,0 +1,21 @@
+{
+  "name": "game",
+  "version": "0.0.1",
+  "authors": [
+    "fancy <fancyboynet@gmail.com>"
+  ],
+  "description": "html5 game",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "html5",
+    "game"
+  ],
+  "license": "MIT",
+  "homepage": "http://fancyboy.net/",
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "requirejs": "~2.1.14"
+  }
+}
