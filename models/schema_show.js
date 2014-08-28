@@ -9,19 +9,3 @@ var schema = mongoose.Schema({
     url : String
 });
 module.exports = schema;
-//module.exports = {
-//    getSchema : function(){
-//        return schema;
-//    },
-//    getModel : function(){
-//        return {
-//            name : "",
-//            author : "",
-//            email : "",
-//            time : 0,
-//            des : "",
-//            img : "",
-//            url : ""
-//        };
-//    }
-//};

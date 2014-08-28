@@ -11,7 +11,7 @@ var parse = function(data){
 };
 module.exports = {
     get : function(callback){
-        Works.find(function(err, works){
+        Works.find().lean().exec(function(err, works){
             if (err) {
                 callback && callback(err);
                 return;
