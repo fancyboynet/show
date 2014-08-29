@@ -1,10 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var extend = require('f-extend');
-var dt_show = _require('controllers/data/show');
-
+var dtWorks = _require('controllers/data/works');
+var parse = function(data){
+    data.forEach(function(v){
+        var date = v.time;
+        v.time = [date.getFullYear(), '.', date.getMonth() + 1, '.', date.getDate(), ' ', date.getHours(), ':', date.getMinutes()].join('');
+    });
+    return data;
+};
 router.get('/', function(req, res, next) {
-    dt_show.get(function(err, data){
+    dtWorks.get(function(err, data){
         if(err){
             next(err);
             return;
@@ -14,7 +20,7 @@ router.get('/', function(req, res, next) {
                 title : 'Show',
                 canAdd : true
             },
-            showList : data
+            showList : parse(data)
         });
     });
 });
@@ -52,8 +58,8 @@ router.post('/', function(req, res, next){
         next(new Error('作品地址必填'));
         return;
     }
-    data.time = new Date().getTime();
-    dt_show.add(data, function(err){
+    data.time = new Date();
+    dtWorks.add(data, function(err){
         if(err){
             next(err);
             return;

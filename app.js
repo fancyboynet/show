@@ -8,9 +8,9 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var routes = require('./controllers/routes');
-var _404 = require('./controllers/404');
-var error = require('./controllers/error');
+var routes = _require('controllers/routes');
+var _404 = _require('controllers/404');
+var error = _require('controllers/error');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
