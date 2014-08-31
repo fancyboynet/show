@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
         res.render('index', {
             header : {
                 title : 'Show',
+                version : req.app.get('version'),
                 canAdd : true
             },
             works : data.works
