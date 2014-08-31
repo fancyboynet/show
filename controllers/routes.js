@@ -6,6 +6,4 @@ var rtApi = require('./routes/api');
 router.use('/', rtIndex);
 router.use('/api', rtApi);
 
-module.exports = function(){
-    return router;
-};
+module.exports = router;

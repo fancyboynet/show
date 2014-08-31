@@ -23,9 +23,11 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use('/bower_components', express.static(path.join(__dirname, 'bower_components')));
+app.use('/template', express.static(path.join(__dirname, 'views/modules/share')));
 
-//routes
-app.use(routes());
+//page router
+app.use(routes);
+
 //404
 app.use(_404());
 //error

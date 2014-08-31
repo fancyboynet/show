@@ -3,13 +3,21 @@ var router = express.Router();
 var dtWorks = _require('controllers/data/works');
 
 router.get('/', function(req, res, next){
-    dtWorks.get(function(err, data){
+    var page = req.param('p');
+    var pageRecords = req.param('pd');
+    dtWorks.get(page, function(err, data){
         if(err){
-            res.json(null);
+            res.json({
+                status : -1,
+                message : err.message
+            });
             return;
         }
-        res.json(data);
-    });
+        res.json({
+            status : 1,
+            data : data
+        });
+    }, pageRecords);
 });
 
 

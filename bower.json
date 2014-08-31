@@ -16,6 +16,7 @@
   "homepage": "http://fancyboy.net/",
   "dependencies": {
     "bootstrap": "~3.2.0",
-    "requirejs": "~2.1.14"
+    "requirejs": "~2.1.14",
+    "ejs": "~1.0.0"
   }
 }

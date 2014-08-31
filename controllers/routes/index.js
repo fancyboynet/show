@@ -2,13 +2,6 @@ var express = require('express');
 var router = express.Router();
 var extend = require('f-extend');
 var dtWorks = _require('controllers/data/works');
-var parse = function(data){
-    data.forEach(function(v){
-        var date = v.time;
-        v.time = [date.getFullYear(), '.', date.getMonth() + 1, '.', date.getDate(), ' ', date.getHours(), ':', date.getMinutes()].join('');
-    });
-    return data;
-};
 router.get('/', function(req, res, next) {
     dtWorks.get(function(err, data){
         if(err){
@@ -20,12 +13,18 @@ router.get('/', function(req, res, next) {
                 title : 'Show',
                 canAdd : true
             },
-            showList : parse(data)
+            works : data.works
         });
     });
 });
 
 router.post('/', function(req, res, next){
+
+    if(req.body.code !== 'ctkj0571'){
+        next(new Error('邀请码不正确'));
+        return;
+    }
+
     var data = extend({
         "name" : "",
         "author" : "",
@@ -34,6 +33,7 @@ router.post('/', function(req, res, next){
         "img" : "",
         "url" : ""
     }, req.body);
+
     if(!data.name){
         next(new Error('作品名称必填'));
         return;
