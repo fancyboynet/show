@@ -5,6 +5,7 @@ module.exports = function(isDev){
         res.render('error', {
             header : {
                 title : status,
+                version : req.app.get('version'),
                 canAdd : false
             },
             message: err.message,
