@@ -1,16 +1,16 @@
 {
-  "name": "game",
-  "version": "0.0.1",
+  "name": "show",
+  "version": "0.0.2",
   "authors": [
     "fancy <fancyboynet@gmail.com>"
   ],
-  "description": "html5 game",
+  "description": "html5 works",
   "moduleType": [
     "node"
   ],
   "keywords": [
     "html5",
-    "game"
+    "works"
   ],
   "license": "MIT",
   "homepage": "http://fancyboy.net/",
