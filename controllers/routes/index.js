@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var extend = require('f-extend');
-var dt_show = _require('controllers/data/show');
-
+var dtWorks = _require('controllers/data/works');
 router.get('/', function(req, res, next) {
-    dt_show.get(function(err, data){
+    dtWorks.get(function(err, data){
         if(err){
             next(err);
             return;
@@ -12,14 +11,21 @@ router.get('/', function(req, res, next) {
         res.render('index', {
             header : {
                 title : 'Show',
+                version : req.app.get('version'),
                 canAdd : true
             },
-            showList : data
+            works : data.works
         });
     });
 });
 
 router.post('/', function(req, res, next){
+
+    if(req.body.code !== 'ctkj0571'){
+        next(new Error('邀请码不正确'));
+        return;
+    }
+
     var data = extend({
         "name" : "",
         "author" : "",
@@ -28,6 +34,7 @@ router.post('/', function(req, res, next){
         "img" : "",
         "url" : ""
     }, req.body);
+
     if(!data.name){
         next(new Error('作品名称必填'));
         return;
@@ -52,8 +59,8 @@ router.post('/', function(req, res, next){
         next(new Error('作品地址必填'));
         return;
     }
-    data.time = new Date().getTime();
-    dt_show.add(data, function(err){
+    data.time = new Date();
+    dtWorks.add(data, function(err){
         if(err){
             next(err);
             return;

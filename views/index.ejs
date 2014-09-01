@@ -1,30 +1,23 @@
+<%
+  var util = _require('utils/util');
+  var groups = util.groupArray(works, 3);
+%>
 <% include modules/header %>
 <% include modules/addOne %>
-<div class="jumbotron">
-    <h1>不秀真不开心</h1>
-</div>
-<div class="container-fluid">
-    <% showList.forEach(function(show, i){%>
-        <%if(i % 3 === 0){%>
-            <div class="row">
-        <%}%>
+<iframe style="width: 100%;height:240px;margin:0 0 10px;" frameborder="0" scrolling="no" src="http://games.cdn.famobi.com/html5games/k/kk-jungle-chaos/v2/?fg_domain=html5games.com&fg_uid=53c7978d-2d1c-4adc-acf7-1ef040c242dc&fg_pid=4638e320-4444-4514-81c4-d80a8c662371&fg_beat=161"></iframe>
+<div class="container-fluid" id="works">
+    <% groups.forEach(function(group, i){%>
+        <div class="row">
+            <% group.forEach(function(work, i){;%>
+                <% work.time = util.formatDate(work.time);%>
                 <div class="col-md-4">
-                    <div class="thumbnail">
-                        <a href="<%= show.url %>" target="_blank"><img src="<%= show.img %>" alt="..."></a>
-                        <div class="caption">
-                            <h3><a href="<%= show.url %>" target="_blank"><%= show.name %></a></h3>
-                            <p>作者：<%= show.author %></p>
-                            <p>邮箱：<a href="mailto:<%= show.email %>"><%= show.email %></a></p>
-                            <p>时间：<%= show.time %></p>
-                            <p>说明：<%= show.des %></p>
-                        </div>
-                    </div>
+                    <% include modules/share/work %>
                 </div>
-        <%if((i > 0 && i % 3 === 2) || i === showList.length - 1){%>
-            </div>
-        <%}%>
+            <%}); %>
+        </div>
     <%}); %>
 </div>
+
 <% include modules/requirejs %>
 <script src="/static/page/index.js"></script>
 <% include modules/footer %>
