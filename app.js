@@ -14,7 +14,7 @@ var _404 = _require('controllers/404');
 var error = _require('controllers/error');
 
 //set version
-app.set('version', '0.0.3');
+app.set('version', '0.0.4');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
