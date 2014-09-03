@@ -17,7 +17,7 @@ module.exports = function(grunt) {
                 force : true
             },
             build : ["<%= buildPath %>"],
-            output : ["<%= outputPath %>", "!<%= buildPath %>/.git"]
+            output : ["<%= outputPath %>/**/*", "!<%= outputPath %>/.git/**/*"]
         },
         copy : {
             build : {
