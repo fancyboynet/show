@@ -7,11 +7,14 @@ var getWorksBetween = function(range, callback){
     var start = range.range[0];
     var end = range.range[1];
     Works.find().skip(start).limit(end - start + 1).lean().exec(function(err, works){
-        if (err) {
-            callback && callback(err);
+        if(!callback){
             return;
         }
-        callback && callback(null, {
+        if (err) {
+            callback(err);
+            return;
+        }
+        callback(null, {
             totalPages : range.totalPages,
             works : works
         });
@@ -19,13 +22,16 @@ var getWorksBetween = function(range, callback){
 };
 var getWorksByPage = function(page, pageRecords, callback){
     Works.count(function(err, count){
+        if(!callback){
+            return;
+        }
         if (err) {
-            callback && callback(err);
+            callback(err);
             return;
         }
         var range = util.getPageRange(count, pageRecords, page);
         if(page > range.totalPages){
-            callback && callback(null, {
+            callback(null, {
                 totalPages : range.totalPages,
                 works : []
             });
@@ -45,8 +51,11 @@ module.exports = {
     },
     add : function(data, callback){
         var work = new Works(data);
+        if(!callback){
+            return;
+        }
         work.save(function(err){
-            callback && callback(err);
+            callback(err);
         });
     }
 };
