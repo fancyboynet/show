@@ -15,5 +15,5 @@ define(["jquery", "bootstrap"], function($) {
         hide : function(){
             $Modal.modal('hide');
         }
-    }
+    };
 });

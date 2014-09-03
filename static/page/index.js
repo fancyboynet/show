@@ -1,19 +1,8 @@
 require(['jquery', 'bootstrap', 'ejs', 'addOne'], function($) {
-    var tplWork;
+    var tplWork = $('#tplWork').html();
     var $Win = $(window);
     var $Doc = $(document);
     var $Works = $('#works');
-    $.ajax({
-        url : '/template/work.ejs',
-        success : function(tpl){
-            tplWork = tpl;
-            $Win.on('scroll', function(){
-                if(isGoingToGetMore()){
-                    getMoreWorks();
-                }
-            });
-        }
-    });
     var _isGetting = false;
     var _lastPage = 2;
     var _isEnd = false;
@@ -87,4 +76,9 @@ require(['jquery', 'bootstrap', 'ejs', 'addOne'], function($) {
         });
         return output;
     };
+    $Win.on('scroll', function(){
+        if(isGoingToGetMore()){
+            getMoreWorks();
+        }
+    });
 });
